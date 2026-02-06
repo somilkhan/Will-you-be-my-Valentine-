@@ -1,22 +1,129 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Will You Be My Valentine?</title>
-    <link rel="stylesheet" href="styles.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hey Somya</title>
+
+<style>
+body{
+  margin:0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(160deg,#ffd6e0,#ffeaf4);
+  height:100vh;
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  color:#ff4d6d;
+}
+
+.slide{
+  display:none;
+  flex-direction:column;
+  align-items:center;
+  animation: fade 0.6s ease;
+  padding:20px;
+}
+
+.active{ display:flex; }
+
+@keyframes fade{
+  from{opacity:0; transform:translateY(20px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+h1{
+  font-size:26px;
+  margin-bottom:25px;
+}
+
+img{
+  border-radius:18px;
+  margin:8px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+.selfie{ width:160px; height:200px; object-fit:cover; }
+.hori{ width:260px; height:170px; object-fit:cover; }
+
+button{
+  margin-top:25px;
+  padding:12px 25px;
+  font-size:18px;
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+  background:#ff4d6d;
+  color:white;
+}
+
+#no{
+  position:absolute;
+  background:white;
+  color:#ff4d6d;
+}
+</style>
 </head>
+
 <body>
-    <div class="container">
-        <h1>Will you be my Valentine?</h1>
-        <div class="buttons">
-            <button class="yes-button" onclick="handleYesClick()">Yes</button>
-            <button class="no-button" onclick="handleNoClick()">No</button>
-        </div>
-        <div class="gif_container">
-            <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbW5lenZyZHI5OXM2eW95b3pmMG40cWVrMDhtNjVuM3A4dGNxa2g2dSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/VM1fcpu2bKs1e2Kdbj/giphy.gif" alt="Cute GIF">
-        </div>
+
+<!-- Slide 1 -->
+<div class="slide active" id="s1">
+  <h1>Hey Somya 🙂<br>Tap for a tiny surprise</h1>
+  <button onclick="next(1)">Tap</button>
+</div>
+
+<!-- Slide 2 -->
+<div class="slide" id="s2">
+  <h1>You look really cute here</h1>
+  <img src="s1.jpg" class="selfie">
+  <button onclick="next(2)">Next</button>
+</div>
+
+<!-- Slide 3 -->
+<div class="slide" id="s3">
+  <h1>Okay wait… it gets better</h1>
+  <img src="s2.jpg" class="selfie">
+  <img src="h1.jpg" class="hori">
+  <button onclick="next(3)">Next</button>
+</div>
+
+<!-- Slide 4 -->
+<div class="slide" id="s4">
+  <h1>This is unfair now 😌</h1>
+  <img src="h2.jpg" class="hori">
+  <img src="h3.jpg" class="hori">
+  <button onclick="next(4)">Next</button>
+</div>
+
+<!-- Final Slide -->
+<div class="slide" id="s5">
+  <h1 id="q">So Somya… will you be my Valentine?</h1>
+  <button id="yes">Yes ❤️</button>
+  <button id="no">No</button>
+</div>
+
+<script>
+function next(n){
+  document.getElementById("s"+n).classList.remove("active");
+  document.getElementById("s"+(n+1)).classList.add("active");
+}
+
+let no = document.getElementById("no");
+no.addEventListener("mouseover", () => {
+  no.style.left = Math.random() * (window.innerWidth - 100) + "px";
+  no.style.top = Math.random() * (window.innerHeight - 50) + "px";
+});
+
+document.getElementById("yes").onclick = () => {
+  document.body.innerHTML = `
+    <div style="display:flex;justify-content:center;align-items:center;height:100vh;background:linear-gradient(160deg,#ffd6e0,#ffeaf4);color:#ff4d6d;font-family:Segoe UI;text-align:center;">
+      <h1>Yay ❤️<br>See you on Valentine, Somya</h1>
     </div>
-    <script src="script.js"></script>
+  `;
+};
+</script>
+
 </body>
 </html>
